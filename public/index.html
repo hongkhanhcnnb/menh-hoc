@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#101b2a" />
+  <meta name="description" content="Không gian cá nhân để lưu hồ sơ sinh, ghi chép chiêm nghiệm và quản lý thư viện Tử vi – Chiêm tinh." />
+  <title>Mệnh Học — Không gian chiêm nghiệm cá nhân</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#dashboard" aria-label="Mệnh Học - Tổng quan">
+        <span class="brand-mark"><span class="brand-orbit"></span><span class="brand-star">✦</span></span>
+        <span class="brand-copy"><strong>MỆNH HỌC</strong><small>PERSONAL COSMOS</small></span>
+      </a>
+
+      <div class="sidebar-label">KHÔNG GIAN CỦA BẠN</div>
+      <nav class="main-nav" aria-label="Điều hướng chính">
+        <button class="nav-item active" data-page="dashboard"><span class="nav-icon">⌂</span><span>Tổng quan</span></button>
+        <button class="nav-item" data-page="profile"><span class="nav-icon">◉</span><span>Hồ sơ sinh</span></button>
+        <button class="nav-item" data-page="chart"><span class="nav-icon">✧</span><span>Bản đồ sao</span><span class="nav-tag">BETA</span></button>
+        <button class="nav-item" data-page="analysis"><span class="nav-icon">⌘</span><span>Luận giải cuộc đời</span></button>
+        <button class="nav-item" data-page="daily"><span class="nav-icon">☼</span><span>Vận trình hôm nay</span></button>
+        <button class="nav-item" data-page="journal"><span class="nav-icon">▤</span><span>Nhật ký</span></button>
+        <button class="nav-item" data-page="library"><span class="nav-icon">▥</span><span>Thư viện tri thức</span></button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="privacy-card">
+          <div class="privacy-icon">♧</div>
+          <div><strong>Dữ liệu thuộc về bạn</strong><p>Thông tin hiện được lưu trên trình duyệt này.</p></div>
+        </div>
+        <button class="nav-item settings-link" data-page="settings"><span class="nav-icon">⚙</span><span>Cài đặt & sao lưu</span></button>
+        <div class="sidebar-version">DEPLOY-READY MVP · 1.1.0</div>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu" aria-label="Mở menu">☰</button>
+        <div class="breadcrumb"><span>KHÔNG GIAN CÁ NHÂN</span><i>/</i><strong id="pageCrumb">Tổng quan</strong></div>
+        <div class="topbar-right">
+          <label class="language-switch" aria-label="Language"><span>文</span><select id="appLanguage" aria-label="Select language"><option value="vi">🇻🇳 VI</option><option value="en">🇬🇧 EN</option><option value="ja">🇯🇵 日本語</option></select></label>
+          <div class="today-chip"><span class="live-dot"></span><span id="topDate"></span></div>
+          <button class="avatar-button" id="avatarButton" title="Mở hồ sơ">MH</button>
+        </div>
+      </header>
+
+      <div class="content-wrap">
+        <!-- DASHBOARD -->
+        <section class="page active" id="page-dashboard">
+          <div class="page-heading">
+            <div><p class="eyebrow">THỨC TỈNH SỰ THẤU HIỂU</p><h1 id="greetingTitle">Chào mừng bạn đến với Mệnh Học</h1><p class="page-subtitle">Một không gian để khám phá các hệ thống huyền học, quan sát bản thân và lưu lại hành trình mỗi ngày.</p></div>
+            <button class="button button-primary" data-goto="profile"><span>＋</span> Thiết lập hồ sơ sinh</button>
+          </div>
+
+          <div class="hero-panel">
+            <div class="hero-text">
+              <div class="hero-kicker"><span class="sparkle">✧</span> YOUR PERSONAL COSMOS</div>
+              <h2>Hiểu mình sâu hơn,<br/><em>chủ động</em> với hành trình.</h2>
+              <p>Ghi nhận dữ liệu, tìm hiểu các trường phái và biến chiêm nghiệm thành những hành động có ý nghĩa.</p>
+              <button class="button button-gold" data-goto="journal">Viết nhật ký hôm nay <span>↗</span></button>
+            </div>
+            <div class="hero-art" aria-hidden="true">
+              <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div>
+              <div class="hero-planet"></div><span class="hero-star star-a">✦</span><span class="hero-star star-b">✧</span><span class="hero-star star-c">·</span><span class="hero-star star-d">✦</span>
+              <div class="hero-art-caption">OBSERVE · REFLECT · GROW</div>
+            </div>
+          </div>
+
+          <div class="stat-grid">
+            <article class="stat-card"><div class="stat-top"><span>HỒ SƠ SINH</span><span class="stat-icon gold">◉</span></div><div class="stat-value" id="statProfile">Chưa có</div><div class="stat-foot" id="statProfileFoot">Bổ sung thông tin để bắt đầu</div></article>
+            <article class="stat-card"><div class="stat-top"><span>GHI CHÉP</span><span class="stat-icon lavender">▤</span></div><div class="stat-value" id="statJournal">0 <small>bài viết</small></div><div class="stat-foot">Những dấu mốc bạn đã lưu</div></article>
+            <article class="stat-card"><div class="stat-top"><span>THƯ VIỆN</span><span class="stat-icon blue">▥</span></div><div class="stat-value" id="statLibrary">0 <small>tài liệu</small></div><div class="stat-foot">Nguồn tri thức do bạn quản lý</div></article>
+            <article class="stat-card"><div class="stat-top"><span>TRẠNG THÁI HỆ THỐNG</span><span class="stat-icon green">⌁</span></div><div class="stat-value small-value">Full-stack</div><div class="stat-foot">FastAPI · SQLite · Gemini</div></article>
+          </div>
+
+          <div class="dashboard-grid">
+            <article class="panel daily-overview">
+              <div class="panel-heading"><div><p class="eyebrow">CHIÊM NGHIỆM TRONG NGÀY</p><h3>Hôm nay, bạn muốn chú tâm điều gì?</h3></div><span class="date-stamp" id="dailyDateStamp"></span></div>
+              <div class="daily-focus-row"><div class="focus-symbol">☼</div><div><span class="mini-label">CHỦ ĐỀ GỢI Ý</span><h4 id="dailyTheme">Sắp xếp và làm rõ ưu tiên</h4><p id="dailyDescription">Dành một khoảng ngắn để xác định điều thực sự cần hoàn thành.</p></div></div>
+              <div class="daily-note"><span>✦</span><p>Đây là gợi ý tự phản tư theo lịch, không phải kết quả dự báo vận mệnh.</p></div>
+              <button class="text-link" data-goto="daily">Xem gợi ý trong ngày <span>→</span></button>
+            </article>
+
+            <article class="panel profile-overview">
+              <div class="panel-heading"><div><p class="eyebrow">DỮ LIỆU CÁ NHÂN</p><h3>Hồ sơ của bạn</h3></div><button class="icon-button" data-goto="profile" title="Chỉnh sửa">↗</button></div>
+              <div id="profileSummary" class="profile-summary empty-summary"><div class="empty-orb">◉</div><h4>Chưa thiết lập hồ sơ</h4><p>Thêm ngày, giờ và nơi sinh để chuẩn bị cho các bước tính toán lá số.</p><button class="button button-outline" data-goto="profile">Thêm thông tin</button></div>
+            </article>
+          </div>
+
+          <div class="bottom-grid">
+            <article class="panel journal-preview"><div class="panel-heading"><div><p class="eyebrow">DẤU MỐC CỦA BẠN</p><h3>Nhật ký gần đây</h3></div><button class="text-link" data-goto="journal">Tất cả <span>→</span></button></div><div id="recentJournals" class="recent-list"><div class="empty-inline">Chưa có ghi chép. Hãy bắt đầu bằng một vài dòng về ngày hôm nay.</div></div></article>
+            <article class="quote-panel"><div class="quote-mark">“</div><blockquote>Biết người là trí, biết mình là sáng.</blockquote><p>Một lời nhắc để quan sát bản thân trước khi tìm câu trả lời từ bên ngoài.</p><span class="quote-source">GHI CHÚ CHIÊM NGHIỆM</span></article>
+          </div>
+        </section>
+
+        <!-- PROFILE -->
+        <section class="page" id="page-profile">
+          <div class="page-heading"><div><p class="eyebrow">THÔNG TIN ĐẦU VÀO</p><h1>Hồ sơ sinh</h1><p class="page-subtitle">Thông tin ngày, giờ và nơi sinh là dữ liệu nền để tính toán các hệ thống lá số.</p></div><span class="status-pill"><span class="live-dot"></span> Lưu trên thiết bị</span></div>
+          <div class="form-layout">
+            <form class="panel form-panel" id="profileForm">
+              <div class="section-title"><span class="section-number">01</span><div><h3>Thông tin cá nhân</h3><p>Những trường có dấu * là bắt buộc.</p></div></div>
+              <div class="form-grid">
+                <label class="field field-full"><span>Tên hiển thị</span><input name="displayName" id="displayName" placeholder="Ví dụ: Minh Anh" maxlength="60" /></label>
+                <label class="field"><span>Ngày sinh <b>*</b></span><input type="date" name="birthDate" id="birthDate" required /></label>
+                <label class="field"><span>Giờ sinh</span><input type="time" name="birthTime" id="birthTime" /></label>
+                <label class="field"><span>Giới tính</span><select name="gender" id="gender"><option value="">Không muốn cung cấp</option><option value="female">Nữ</option><option value="male">Nam</option><option value="other">Khác</option></select></label>
+                <label class="field"><span>Độ chính xác giờ sinh</span><select name="timeAccuracy" id="timeAccuracy"><option value="unknown">Không rõ</option><option value="exact">Chính xác theo giấy tờ</option><option value="approx">Ước lượng (± 15–30 phút)</option><option value="range">Chỉ biết khoảng giờ</option></select></label>
+                <label class="field field-full"><span>Nơi sinh <b>*</b></span><input name="birthPlace" id="birthPlace" placeholder="Thành phố, tỉnh/bang, quốc gia (ví dụ: Hà Nội, Việt Nam)" required /></label>
+                <div class="field field-full geo-tools"><button class="button button-outline" type="button" id="lookupLocation">Tìm tọa độ địa điểm</button><span id="geoStatus" class="inline-status">Chưa tìm tọa độ</span></div>
+                <label class="field"><span>Vĩ độ (latitude) <b>*</b></span><input type="number" name="latitude" id="latitude" min="-90" max="90" step="0.000001" placeholder="21.0278" required /></label>
+                <label class="field"><span>Kinh độ (longitude) <b>*</b></span><input type="number" name="longitude" id="longitude" min="-180" max="180" step="0.000001" placeholder="105.8342" required /></label>
+                <label class="field"><span>Múi giờ tại nơi sinh</span><input type="text" name="timezone" id="timezone" value="Asia/Ho_Chi_Minh" placeholder="Asia/Ho_Chi_Minh" required /></label>
+                <label class="field"><span>Ngôn ngữ luận giải</span><select name="language" id="language"><option value="vi">Tiếng Việt</option><option value="en">English</option><option value="ja">日本語</option></select></label>
+              </div>
+              <div class="form-hint"><span>ⓘ</span><p>Nếu không biết chính xác giờ sinh, hãy để trống. Một số yếu tố như cung Mọc, hệ thống nhà và trụ giờ Bát tự có thể cần giờ sinh chính xác.</p></div>
+              <div class="form-actions"><button class="button button-primary" type="submit">Lưu hồ sơ <span>→</span></button><button class="button button-ghost" type="reset">Xóa nội dung nhập</button></div>
+            </form>
+            <aside class="side-info"><div class="side-info-art"><div class="mini-planet"></div><div class="mini-orbit"></div><span>✦</span></div><h3>Vì sao cần nơi sinh?</h3><p>Vị trí địa lý và múi giờ giúp xác định thời điểm thiên văn tại địa phương, từ đó hỗ trợ tính toán các yếu tố như cung Mọc và hệ thống nhà.</p><div class="info-divider"></div><h4>Quyền riêng tư</h4><p>Hồ sơ và nhật ký lưu cục bộ trên trình duyệt. Khi bạn bấm phân tích AI, dữ liệu cần thiết sẽ được gửi đến máy chủ của bạn và Gemini API. Không nhập dữ liệu nhạy cảm không cần thiết.</p></aside>
+          </div>
+        </section>
+
+        <!-- CHART -->
+        <section class="page" id="page-chart">
+          <div class="page-heading"><div><p class="eyebrow">NATAL CHART & EASTERN SYSTEMS</p><h1>Bản đồ sao</h1><p class="page-subtitle">Không gian tổng hợp các hệ thống tính toán phương Đông và phương Tây.</p></div><span class="status-pill">Engine phương Tây · Bát tự · Vedic</span></div>
+          <div class="panel chart-controls"><div><p class="eyebrow">CALCULATION SETTINGS</p><h3>Tính lá số từ hồ sơ sinh</h3><p>Nhập tọa độ nơi sinh và giờ sinh chính xác để mở khóa cung Mọc, hệ nhà Placidus và trụ giờ.</p></div><div class="chart-control-actions"><button class="button button-primary" id="calculateChart">Tính lá số <span>✦</span></button></div></div>
+          <div id="chartResult" class="chart-result"><div class="empty-state"><span>✧</span><h4>Chưa có dữ liệu lá số</h4><p>Lưu hồ sơ sinh rồi chọn “Tính lá số” để tạo bản đồ sao, Bát tự và Vedic.</p></div></div>
+          <section class="panel vietnamese-ziwei-panel">
+            <div class="panel-heading"><div><p class="eyebrow">TỬ VI ĐẨU SỐ · TRUYỀN THỐNG VIỆT NAM</p><h3>Bản đồ 12 cung Tử Vi</h3><p class="muted-note">Sơ đồ tra cứu cấu trúc lá số và phạm vi ý nghĩa của từng cung.</p></div><span class="chart-chip">BẢN ĐỒ KIẾN THỨC</span></div>
+            <div class="ziwei-palace-grid">
+              <article><b>01 · Mệnh</b><span>Bản thân, tư chất, khí chất và xu hướng hành xử.</span></article>
+              <article><b>02 · Huynh Đệ</b><span>Anh chị em và quan hệ ngang hàng thân cận.</span></article>
+              <article><b>03 · Phu Thê</b><span>Hôn nhân, bạn đời và cách xây dựng quan hệ đôi lứa.</span></article>
+              <article><b>04 · Tử Tức</b><span>Con cái, thế hệ sau và sự tiếp nối.</span></article>
+              <article><b>05 · Tài Bạch</b><span>Tài chính, nguồn lực và cách quản trị tiền bạc.</span></article>
+              <article><b>06 · Tật Ách</b><span>Sức khỏe theo cách luận truyền thống; không thay thế y khoa.</span></article>
+              <article><b>07 · Thiên Di</b><span>Môi trường bên ngoài, đi xa và khả năng thích nghi.</span></article>
+              <article><b>08 · Nô Bộc</b><span>Bạn bè, đồng nghiệp, cộng sự và mạng lưới hỗ trợ.</span></article>
+              <article><b>09 · Quan Lộc</b><span>Công việc, nghề nghiệp và con đường phát triển.</span></article>
+              <article><b>10 · Điền Trạch</b><span>Nhà cửa, nơi ở và tài sản gắn với đất đai.</span></article>
+              <article><b>11 · Phúc Đức</b><span>Đời sống tinh thần, nền nếp gia tộc và phúc phần theo quan niệm cổ.</span></article>
+              <article><b>12 · Phụ Mẫu</b><span>Cha mẹ, người lớn và sự nâng đỡ từ thế hệ trước.</span></article>
+            </div>
+            <div class="ziwei-reference-grid">
+              <div><h4>14 chính tinh</h4><p><b>Chòm Tử Vi (6):</b> Tử Vi, Thiên Cơ, Thái Dương, Vũ Khúc, Thiên Đồng, Liêm Trinh.</p><p><b>Chòm Thiên Phủ (8):</b> Thiên Phủ, Thái Âm, Tham Lang, Cự Môn, Thiên Tướng, Thiên Lương, Thất Sát, Phá Quân.</p></div>
+              <div><h4>Cách đọc bản đồ</h4><p>Không luận một cung riêng lẻ. Thường cần xét tam phương tứ chính, chính tinh, phụ tinh, độ sáng và các lớp Tứ Hóa theo đúng trường phái.</p><p class="muted-note">Đây là sơ đồ kiến thức, chưa phải lá số cá nhân đã an cung/an sao. Ứng dụng chưa tích hợp engine Tử Vi Việt Nam nên không tự tạo vị trí sao khi chưa kiểm chứng quy tắc.</p></div>
+            </div>
+            <p class="ziwei-sources">Tài liệu tham khảo: <a href="https://www.etuvi.vn/kien-thuc/cung/" target="_blank" rel="noopener noreferrer">eTuvi – 12 cung</a> · <a href="https://huyenhocvietnam.com.vn/tu-vi" target="_blank" rel="noopener noreferrer">Huyền Học Việt Nam – kiến thức Tử Vi</a> · <a href="https://amlich.org/la-so-tu-vi" target="_blank" rel="noopener noreferrer">Âm Lịch – cấu trúc lá số</a>.</p>
+          </section>
+          <div class="panel roadmap-panel"><p class="eyebrow">TRẠNG THÁI ENGINE</p><div class="engine-row"><span class="engine-icon">☉</span><div><strong>Chiêm tinh phương Tây</strong><small>Kerykeion / libephemeris · Tropical</small></div><span class="engine-state engine-ready">Đã tích hợp</span></div><div class="engine-row"><span class="engine-icon">☯</span><div><strong>Bát tự Trung Quốc</strong><small>lunar-python · tiết khí / Tứ trụ</small></div><span class="engine-state engine-ready">Đã tích hợp</span></div><div class="engine-row"><span class="engine-icon">ॐ</span><div><strong>Chiêm tinh Vedic</strong><small>Sidereal Lahiri / Nakshatra</small></div><span class="engine-state engine-ready">Đã tích hợp</span></div><div class="engine-row"><span class="engine-icon">紫</span><div><strong>Tử Vi Đẩu Số / Tử vi Việt Nam</strong><small>x-iztro · 12 cung, 14 chính tinh, phụ tinh, Tứ Hóa, Đại vận</small></div><span class="engine-state engine-ready">Đã tích hợp</span></div></div>
+        </section>
+
+        <!-- ANALYSIS -->
+        <section class="page" id="page-analysis">
+          <div class="page-heading"><div><p class="eyebrow">LIFE PATTERNS & INTERPRETATION</p><h1>Luận giải cuộc đời</h1><p class="page-subtitle">Khu vực sẽ tổng hợp các luận điểm từ từng trường phái, có dẫn nguồn và nêu rõ mức độ bất đồng.</p></div></div>
+          <div class="panel analysis-controls"><div class="analysis-control-head"><div><p class="eyebrow">GEMINI PERSONAL INTERPRETATION</p><h3>Chọn chủ đề cần luận giải</h3><p>AI chỉ giải thích dữ liệu do engine tính được; không tự tạo vị trí sao hoặc đại vận chưa có.</p></div><div class="analysis-control-form"><select id="analysisTopic"><option value="overview">Tổng quan cá nhân</option><option value="career">Sự nghiệp & định hướng</option><option value="wealth">Tài lộc & nguồn lực</option><option value="relationships">Tình cảm & quan hệ</option><option value="wellbeing">Năng lượng & nếp sống</option><option value="cycles">Đại hạn & chu kỳ</option></select><label class="check-inline"><input type="checkbox" id="includeKnowledge" checked /> Dùng thư viện tri thức</label><label class="check-inline"><input type="checkbox" id="consentAnalysis" /> Tôi đồng ý gửi dữ liệu lá số đã tính (đã loại thông tin định danh) và tối đa 20 ghi chép gần đây đến Gemini.</label><button class="button button-primary" id="runAnalysis">Phân tích bằng Gemini <span>✦</span></button></div></div></div>
+          <div id="analysisResult" class="panel ai-result"><div class="empty-inline">Hãy lưu hồ sơ và tính lá số trước khi tạo báo cáo luận giải.</div></div>
+          <div class="notice notice-info"><span>ⓘ</span><div><strong>Quyền riêng tư AI</strong><p>Ứng dụng không gửi tên, email, mật khẩu hoặc tọa độ chính xác. Gemini nhận dữ liệu lá số đã tính và tối đa 20 ghi chép gần đây khi bạn bật đồng ý. Dữ liệu gửi đến Google được xử lý theo điều khoản và chính sách của Google AI Studio/Gemini API đang áp dụng; không nhập thông tin bí mật hoặc dữ liệu nhạy cảm vào nhật ký.</p></div></div>
+          <div class="analysis-grid">
+            <article class="analysis-card"><div class="analysis-icon career">⌑</div><span class="eyebrow">01 · WORK & PURPOSE</span><h3>Sự nghiệp & định hướng</h3><p>Phân tích cung Quan Lộc, nhà 10, MC, các chỉ báo nghề nghiệp và đối chiếu giữa trường phái.</p><span class="coming-label">SẴN SÀNG PHÂN TÍCH</span></article>
+            <article class="analysis-card"><div class="analysis-icon wealth">◇</div><span class="eyebrow">02 · WEALTH & RESOURCES</span><h3>Tài lộc & nguồn lực</h3><p>Luận giải biểu tượng về tài chính, năng lực tạo giá trị và các chu kỳ cần quản trị rủi ro.</p><span class="coming-label">SẴN SÀNG PHÂN TÍCH</span></article>
+            <article class="analysis-card"><div class="analysis-icon love">♡</div><span class="eyebrow">03 · RELATIONSHIPS</span><h3>Tình cảm & quan hệ</h3><p>Đối chiếu các chủ đề quan hệ, tương tác và nhu cầu cá nhân theo từng hệ thống.</p><span class="coming-label">SẴN SÀNG PHÂN TÍCH</span></article>
+            <article class="analysis-card"><div class="analysis-icon cycles">⟳</div><span class="eyebrow">04 · LIFE CYCLES</span><h3>Đại hạn & chu kỳ năm</h3><p>Biểu diễn đại vận, tiểu vận, lưu niên và transit theo mốc thời gian đã tính toán.</p><span class="coming-label">SẴN SÀNG PHÂN TÍCH</span></article>
+          </div>
+          <div class="panel method-panel"><div class="method-icon">⚖</div><div><h3>Nguyên tắc luận giải</h3><p>Không trộn lẫn quy tắc giữa các trường phái. Mỗi nhận định sẽ ghi rõ hệ thống, dữ liệu đầu vào, nguồn tham khảo và phần chưa chắc chắn; các kết luận mang tính chiêm nghiệm, không thay thế tư vấn chuyên môn.</p></div></div>
+        </section>
+
+        <!-- DAILY -->
+        <section class="page" id="page-daily">
+          <div class="page-heading"><div><p class="eyebrow">DAILY REFLECTION</p><h1>Vận trình hôm nay</h1><p class="page-subtitle">Gợi ý quan sát và hành động nhỏ theo chủ đề trong ngày, không phải dự báo định mệnh.</p></div><label class="date-select"><span>Chọn ngày</span><input type="date" id="dailyDate" /></label></div>
+          <div class="daily-hero panel"><div><span class="eyebrow">CHỦ ĐỀ CHIÊM NGHIỆM</span><h2 id="dailyPageTheme">Sắp xếp để tạo khoảng trống</h2><p id="dailyPageDesc">Chọn một ưu tiên chính và dành sự tập trung cho việc đó.</p><div class="daily-tags"><span id="weekdayTag">HÔM NAY</span><span>GỢI Ý TỰ PHẢN TƯ</span></div></div><div class="daily-sun-art"><div class="sun-core"></div><div class="sun-ray ray-1"></div><div class="sun-ray ray-2"></div><div class="sun-ray ray-3"></div><div class="sun-ray ray-4"></div></div></div>
+          <div class="daily-cards-grid"><article class="panel recommendation-card"><span class="rec-symbol">✓</span><p class="eyebrow">NÊN THỬ</p><h3 id="dailyDoTitle">Hoàn thành một việc quan trọng</h3><p id="dailyDoDesc">Chia việc lớn thành một bước cụ thể có thể hoàn thành.</p></article><article class="panel recommendation-card"><span class="rec-symbol rec-muted">–</span><p class="eyebrow">NÊN HẠN CHẾ</p><h3 id="dailyAvoidTitle">Ôm đồm quá nhiều đầu việc</h3><p id="dailyAvoidDesc">Tránh thêm việc mới khi chưa rà soát năng lực và thời gian.</p></article><article class="panel recommendation-card"><span class="rec-symbol rec-color">◈</span><p class="eyebrow">MÀU SẮC BIỂU TƯỢNG</p><h3 id="dailyColorName">Xanh lam trầm</h3><div class="color-swatch-row"><span class="color-swatch" id="dailyColorSwatch"></span><p id="dailyColorDesc">Gợi nhắc sự bình tĩnh và rõ ràng.</p></div></article></div>
+          <div class="daily-ai-action"><div><p class="eyebrow">PERSONAL DAILY TRANSITS</p><h3>Phân tích vận trình theo lá số của bạn</h3><p>Dùng góc chiếu transit được tính cho ngày đã chọn và đối chiếu nhật ký gần đây.</p><label class="check-inline"><input type="checkbox" id="consentDaily" /> Tôi đồng ý gửi transit và các ghi chép gần đây đã chọn đến Gemini.</label></div><button class="button button-primary" id="runDaily">Phân tích ngày này <span>✦</span></button></div>
+          <div id="dailyAIResult" class="panel ai-result"><div class="empty-inline">Chọn ngày và bấm phân tích để nhận phần luận giải cá nhân hóa.</div></div>
+          <div class="notice notice-info daily-disclaimer"><span>ⓘ</span><div><strong>Minh bạch về dự đoán</strong><p>Transit là phép tính vị trí hành tinh theo thời điểm, còn phần “vận trình” là diễn giải biểu tượng của truyền thống chiêm tinh, không phải dự báo được khoa học xác nhận. Không dùng để quyết định thay cho tư vấn y tế, pháp lý hoặc tài chính.</p></div></div>
+        </section>
+
+        <!-- JOURNAL -->
+        <section class="page" id="page-journal">
+          <div class="page-heading"><div><p class="eyebrow">PERSONAL OBSERVATION</p><h1>Nhật ký cá nhân</h1><p class="page-subtitle">Ghi lại điều đã xảy ra để quan sát mô thức và tiến trình của chính mình.</p></div><span class="count-pill" id="journalCount">0 ghi chép</span></div>
+          <div class="journal-layout"><form class="panel journal-form" id="journalForm"><div class="panel-heading"><div><p class="eyebrow">DAILY LOG</p><h3>Ghi chép mới</h3></div><span class="journal-date-icon">✎</span></div><label class="field"><span>Ngày ghi chép</span><input type="date" id="journalDate" required /></label><label class="field"><span>Tiêu đề</span><input id="journalTitle" placeholder="Điều gì đáng nhớ hôm nay?" maxlength="100" required /></label><label class="field"><span>Tâm trạng</span><select id="journalMood"><option value="Tích cực">Tích cực</option><option value="Bình thường" selected>Bình thường</option><option value="Căng thẳng">Căng thẳng</option><option value="Buồn / mệt">Buồn / mệt</option><option value="Biết ơn">Biết ơn</option></select></label><label class="field"><span>Ghi chép / sự kiện</span><textarea id="journalBody" rows="6" placeholder="Mô tả sự kiện, cảm xúc, quyết định và kết quả thực tế..."></textarea></label><label class="field"><span>Điều rút ra</span><textarea id="journalLesson" rows="3" placeholder="Bạn học được điều gì? Lần sau muốn điều chỉnh ra sao?"></textarea></label><button type="submit" class="button button-primary button-full">Lưu ghi chép <span>→</span></button><p class="form-footnote">Ghi chép chỉ lưu trong trình duyệt trên thiết bị này.</p></form>
+            <div class="panel journal-history"><div class="panel-heading"><div><p class="eyebrow">YOUR TIMELINE</p><h3>Lịch sử ghi chép</h3></div><label class="check-inline"><input type="checkbox" id="consentJournal" /> Đồng ý gửi nhật ký đã chọn đến Gemini</label><button class="button button-outline button-small" id="analyzeJournal">Tổng hợp nhật ký bằng AI</button><select id="journalFilter" class="small-select"><option value="all">Tất cả</option><option value="Tích cực">Tích cực</option><option value="Bình thường">Bình thường</option><option value="Căng thẳng">Căng thẳng</option><option value="Buồn / mệt">Buồn / mệt</option><option value="Biết ơn">Biết ơn</option></select></div><div id="journalList" class="journal-list"><div class="empty-state"><span>▤</span><h4>Chưa có ghi chép nào</h4><p>Bắt đầu lưu lại những sự kiện và suy nghĩ đáng chú ý trong ngày.</p></div></div></div></div>
+          <div id="journalAIResult" class="panel ai-result"><div class="empty-inline">Hệ thống sẽ tổng hợp khi bạn có ít nhất 3 ghi chép.</div></div>
+        </section>
+
+        <!-- LIBRARY -->
+        <section class="page" id="page-library">
+          <div class="page-heading"><div><p class="eyebrow">KNOWLEDGE BASE</p><h1>Thư viện tri thức</h1><p class="page-subtitle">Quản lý nguồn sách và tài liệu sẽ dùng cho hệ thống luận giải đa trường phái.</p></div><span class="status-pill">Đồng bộ metadata hằng tuần</span></div>
+          <div class="notice notice-info"><span>ⓘ</span><div><strong>Thư viện kết hợp tài liệu bạn nạp và metadata được phát hiện tự động</strong><p>Hệ thống tra cứu metadata thư mục từ Crossref và Open Library theo lịch hằng tuần. Chỉ nạp toàn văn khi bạn có quyền sử dụng; kết quả tìm kiếm không tự cấp quyền tải hoặc lập chỉ mục sách.</p></div></div>
+          <div class="library-layout"><form class="panel library-form" id="libraryForm"><div class="panel-heading"><div><p class="eyebrow">ADD REFERENCE</p><h3>Thêm tài liệu</h3></div><span class="library-icon">▥</span></div><label class="field"><span>Tên sách / tài liệu <b>*</b></span><input id="bookTitle" required placeholder="Tên tài liệu" maxlength="140" /></label><label class="field"><span>Tác giả</span><input id="bookAuthor" placeholder="Tác giả / tổ chức" maxlength="100" /></label><label class="field"><span>Ngôn ngữ tài liệu</span><select id="bookLanguage"><option value="vi">Tiếng Việt</option><option value="en">English</option><option value="ja">日本語</option><option value="other">Khác / Other</option></select></label><div class="two-fields"><label class="field"><span>Trường phái</span><select id="bookTradition"><option>Chiêm tinh phương Tây</option><option>Bát tự Trung Quốc</option><option>Tử Vi Đẩu Số</option><option>Tử vi Việt Nam</option><option>Chiêm tinh Vedic</option><option>Lịch pháp phương Đông</option><option>Khác</option></select></label><label class="field"><span>Năm xuất bản</span><input type="number" id="bookYear" min="0" max="2100" placeholder="2024" /></label></div><label class="field"><span>Quyền sử dụng / giấy phép</span><select id="bookLicense"><option value="Chưa xác minh">Chưa xác minh</option><option value="Public domain">Public domain</option><option value="CC BY">CC BY</option><option value="CC BY-SA">CC BY-SA</option><option value="Được cấp phép">Được cấp phép</option><option value="Chỉ metadata công khai">Chỉ metadata công khai</option></select></label><label class="field"><span>URL nguồn (nếu có)</span><input type="url" id="bookUrl" placeholder="https://..." /></label><button type="submit" class="button button-primary button-full">Thêm vào thư viện <span>＋</span></button></form>
+            <div class="panel library-list-panel"><div class="panel-heading"><div><p class="eyebrow">REFERENCE CATALOG</p><h3>Tài liệu đã lưu</h3></div><span class="count-pill" id="libraryCount">0 tài liệu</span></div><div id="libraryList" class="library-list"><div class="empty-state"><span>▥</span><h4>Thư viện đang trống</h4><p>Thêm nguồn sách và tài liệu để bắt đầu xây dựng danh mục tri thức.</p></div></div></div></div>
+          <div class="library-tools-grid">
+            <form class="panel library-upload" id="libraryUploadForm"><div class="panel-heading"><div><p class="eyebrow">DOCUMENT INGESTION</p><h3>Nạp tài liệu vào Knowledge Base</h3></div></div><label class="field"><span>Chọn PDF / TXT / Markdown</span><input type="file" id="knowledgeFile" accept=".pdf,.txt,.md,.markdown" required /></label><label class="field"><span>Tên tài liệu (nếu khác tên tệp)</span><input id="knowledgeTitle" maxlength="180" placeholder="Tên tài liệu" /></label><label class="field"><span>Quyền sử dụng</span><select id="knowledgeLicense"><option>Public domain</option><option>CC BY</option><option>CC BY-SA</option><option>Được cấp phép</option><option>Chỉ sử dụng cá nhân hợp pháp</option></select></label><label class="check-inline"><input type="checkbox" id="confirmRights" required /> Tôi có quyền sử dụng và lập chỉ mục tài liệu này.</label><button class="button button-primary" type="submit">Tải lên và lập chỉ mục</button><p class="form-footnote">PDF scan chưa được OCR. Chỉ tải tài liệu bạn có quyền xử lý.</p></form>
+            <div class="panel library-discovery"><div class="panel-heading"><div><p class="eyebrow">NEW REFERENCES</p><h3>Tìm sách và tài liệu mới</h3></div></div><label class="field"><span>Từ khóa tìm kiếm</span><input id="discoverQuery" value="Zi Wei Dou Shu astrology BaZi" maxlength="160" /></label><button class="button button-outline" id="discoverBooks">Tìm metadata mới</button><div id="discoverResults" class="discovery-results"><p class="empty-inline">Tra cứu metadata từ Crossref và Open Library. Đây không phải quyền tải toàn văn.</p></div></div>
+          </div>
+          <section class="panel weekly-updates-panel">
+            <div class="panel-heading"><div><p class="eyebrow">WEEKLY REFERENCE WATCH</p><h3>Tài liệu mới phát hiện</h3><p class="muted-note" id="weeklySyncStatus">Đang tải trạng thái đồng bộ...</p></div><button class="button button-outline button-small" id="runWeeklySync">Cập nhật ngay</button></div>
+            <div id="weeklyUpdates" class="weekly-updates-list"><p class="empty-inline">Chưa có dữ liệu đồng bộ.</p></div>
+            <p class="form-footnote">Tự động quét metadata từ Crossref và Open Library vào Thứ Hai hằng tuần, 04:00 giờ Việt Nam. Chỉ lấy metadata và liên kết; quyền sử dụng toàn văn phải được xác minh riêng.</p>
+          </section>
+          <div class="panel knowledge-status"><div><p class="eyebrow">RETRIEVAL STATUS</p><h3>Knowledge Base</h3><p>Đoạn trích trong tài liệu đã nạp có thể được tìm và đưa làm bối cảnh cho Gemini. Tài khoản, hồ sơ và nhật ký được lưu trên PostgreSQL; tài liệu tri thức dùng kho dữ liệu chung của nền tảng.</p></div><div class="knowledge-actions"><button class="button button-outline" id="refreshKnowledge">Làm mới danh mục tài liệu đã nạp</button><button class="button button-outline" id="backupKnowledge">Sao lưu Knowledge Base (.zip)</button></div></div>
+        </section>
+
+        <!-- SETTINGS -->
+        <section class="page" id="page-settings">
+          <div class="page-heading"><div><p class="eyebrow">DATA & PREFERENCES</p><h1>Cài đặt & sao lưu</h1><p class="page-subtitle">Kiểm soát dữ liệu cá nhân, xuất bản sao và khôi phục khi cần.</p></div></div>
+          <div class="settings-grid"><article class="panel settings-card"><div class="settings-icon">⇩</div><h3>Xuất dữ liệu</h3><p>Tải xuống hồ sơ sinh, nhật ký và danh mục tài liệu thành tệp JSON để sao lưu.</p><button class="button button-primary" id="exportData">Xuất bản sao JSON</button></article><article class="panel settings-card"><div class="settings-icon">⇧</div><h3>Nhập dữ liệu</h3><p>Khôi phục dữ liệu từ tệp JSON được xuất từ Mệnh Học.</p><label class="button button-outline file-button">Chọn tệp JSON<input type="file" id="importData" accept="application/json,.json" /></label></article><article class="panel settings-card settings-danger"><div class="settings-icon">⌫</div><h3>Xóa dữ liệu tài khoản</h3><p>Xóa hồ sơ, lá số, báo cáo, ghi chép và metadata cá nhân trên máy chủ. Hành động này không thể hoàn tác.</p><button class="button button-danger" id="clearData">Xóa toàn bộ dữ liệu</button></article></div>
+          <div class="panel about-panel"><p class="eyebrow">ABOUT THIS MVP</p><h3>Minh bạch về dữ liệu và giới hạn</h3><div class="about-row"><span>Phiên bản</span><strong>1.4.0 · Public multi-user</strong></div><div class="about-row"><span>Lưu hồ sơ / nhật ký</span><strong>Neon PostgreSQL theo tài khoản (LocalStorage chỉ cache)</strong></div><div class="about-row"><span>AI</span><strong id="aiStatusText">Đang kiểm tra...</strong></div><div class="about-row"><span>Kiểm tra API</span><strong><button class="text-link" id="testGemini">Gửi yêu cầu kiểm tra Gemini</button></strong></div><div class="about-row"><span>Engine phương Tây</span><strong>Kerykeion / libephemeris</strong></div><div class="about-row"><span>Engine Bát tự</span><strong>lunar-python</strong></div><div class="about-row"><span>Knowledge Base</span><strong>PostgreSQL + PDF/TXT/MD</strong></div><div class="about-row"><span>Tử Vi Đẩu Số</span><strong>x-iztro · quy ước Thiên bàn mặc định</strong></div><div class="about-row"><span>Quyền riêng tư</span><strong>AI chỉ gửi dữ liệu khi bạn chủ động yêu cầu</strong></div><div class="about-row"><span>Phiên truy cập</span><strong><button class="text-link" id="logoutButton">Đăng xuất</button></strong></div></div>
+        </section>
+      </div>
+      <footer class="footer"><span>© 2026 MỆNH HỌC</span><span>CHIÊM NGHIỆM · TRI THỨC · TỰ QUAN SÁT</span></footer>
+    </main>
+  </div>
+  <div class="login-overlay" id="loginOverlay" hidden><form class="login-card" id="loginForm"><div class="login-mark">✦</div><p class="eyebrow">PERSONAL COSMOS</p><h2 id="authTitle">Đăng nhập Mệnh Học</h2><p id="authDescription">Đăng nhập để truy cập hồ sơ, lá số và nhật ký riêng của bạn.</p><label class="field" id="authNameWrap" hidden><span>Họ tên</span><input type="text" id="authName" maxlength="80" autocomplete="name" /></label><label class="field"><span>Email</span><input type="email" id="authEmail" autocomplete="email" required /></label><label class="field"><span>Mật khẩu</span><input type="password" id="loginPassword" minlength="10" autocomplete="current-password" required /></label><p class="form-footnote" id="authPasswordHint">Mật khẩu tối thiểu 10 ký tự.</p><p class="login-error" id="loginError" aria-live="polite"></p><button class="button button-primary button-full" id="authSubmit" type="submit">Đăng nhập</button><button class="text-link" id="authToggle" type="button">Chưa có tài khoản? Đăng ký</button></form></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="i18n.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
