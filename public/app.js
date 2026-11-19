@@ -35,6 +35,8 @@
     return localStorage.getItem("menh-hoc-language") || state.language || "vi";
   }
 
+  function getLocale() { return ({ vi: "vi-VN", en: "en-US", ja: "ja-JP" })[getLanguage()] || "vi-VN"; }
+
   function setLanguage(language) {
     if (!["vi", "en", "ja"].includes(language)) language = "vi";
     localStorage.setItem("menh-hoc-language", language);
@@ -127,7 +129,7 @@
     if (!iso) return "—";
     const d = new Date(`${iso}T12:00:00`);
     if (Number.isNaN(d.getTime())) return "—";
-    return new Intl.DateTimeFormat("vi-VN", options).format(d);
+    return new Intl.DateTimeFormat(getLocale(), options).format(d);
   }
 
   function getSunSign(dateString) {
@@ -289,7 +291,7 @@
 
   function renderDashboard() {
     const p = state.profile;
-    $("#topDate").textContent = new Intl.DateTimeFormat("vi-VN", {
+    $("#topDate").textContent = new Intl.DateTimeFormat(getLocale(), {
       weekday: "long",
       day: "2-digit",
       month: "short",
@@ -644,7 +646,7 @@
     const d = dailyFor(date);
     $("#dailyPageTheme").textContent = d.theme;
     $("#dailyPageDesc").textContent = d.desc;
-    $("#weekdayTag").textContent = new Intl.DateTimeFormat("vi-VN", {
+    $("#weekdayTag").textContent = new Intl.DateTimeFormat(getLocale(), {
       weekday: "long",
     })
       .format(new Date(`${date}T12:00:00`))
@@ -812,7 +814,7 @@
       const status = $("#weeklySyncStatus");
       if (status) {
         const last = result.lastSync
-          ? new Date(result.lastSync).toLocaleString("vi-VN")
+          ? new Date(result.lastSync).toLocaleString(getLocale())
           : "Chưa chạy lần nào";
         status.textContent = `${result.enabled ? "Tự động · " : "Lịch tự động chưa khả dụng · "}${result.schedule} · Lần đồng bộ gần nhất: ${last}`;
       }
@@ -871,8 +873,8 @@
       return;
     }
     chartButton.disabled = true;
-    chartButton.textContent = "Gemini đang phân tích...";
-    $("#chartAnalysisResult").innerHTML = '<div class="loading-state"><span class="loading-spinner"></span><p>Đang đọc toàn bộ dữ liệu Tây phương, Bát tự, Tử Vi và Vedic...</p></div>';
+    chartButton.textContent = ({ vi: "Gemini đang phân tích...", en: "Gemini is analyzing...", ja: "Geminiが分析中..." })[getLanguage()];
+    $("#chartAnalysisResult").innerHTML = `<div class="loading-state"><span class="loading-spinner"></span><p>${({ vi: "Đang đọc toàn bộ dữ liệu Tây phương, Bát tự, Tử Vi và Vedic...", en: "Reviewing Western astrology, BaZi, Zi Wei, and Vedic data...", ja: "西洋占星術、八字、紫微斗数、ヴェーダのデータを確認しています..." })[getLanguage()]}</p></div>`;
     try {
       const result = await api("/api/analyze", {
         method: "POST",
@@ -890,7 +892,7 @@
       $("#chartAnalysisResult").innerHTML = `<div class="notice notice-warn"><strong>Không thể tạo phần luận giải</strong><p>${esc(error.message)}</p></div>`;
     } finally {
       chartButton.disabled = false;
-      chartButton.textContent = "Luận giải chi tiết ✦";
+      chartButton.textContent = ({ vi: "Luận giải chi tiết ✦", en: "Detailed interpretation ✦", ja: "詳細な解釈 ✦" })[getLanguage()];
     }
   });
   $("#avatarButton").addEventListener("click", () => showPage("profile"));

@@ -1530,6 +1530,7 @@ def analyze(body: AnalysisRequest, user_id: str = Depends(require_auth)):
 
 YÊU CẦU CHÍNH: Viết một báo cáo luận giải **chi tiết, cụ thể và có chiều sâu** cho chủ đề: {topic_title}. {topic_instructions}
 Ngôn ngữ: {_language_name(body.language)}.
+YÊU CẦU NGÔN NGỮ NGHIÊM NGẶT: Toàn bộ câu trả lời phải viết bằng {_language_name(body.language)} — gồm tiêu đề, heading, bảng, nhãn, kết luận, lời khuyên và mọi đoạn văn. Không viết tiếng Việt nếu ngôn ngữ đích là English hoặc Japanese. Chỉ giữ nguyên tên riêng, tên kỹ thuật/chuyên ngành hoặc thuật ngữ gốc khi cần; nếu dùng thuật ngữ gốc, giải thích bằng ngôn ngữ đích. Trước khi hoàn tất, tự rà soát và chuyển mọi câu còn sót sang ngôn ngữ đích.
 
 MỤC TIÊU CHẤT LƯỢNG BẮT BUỘC:
 - Đây không phải bản tóm tắt vài đoạn. Hãy đọc toàn bộ dữ liệu engine rồi lập luận từ nhiều chỉ báo kết hợp.
@@ -1643,6 +1644,7 @@ def daily(body: DailyRequest, user_id: str = Depends(require_auth)):
     prompt = f"""{_ai_system_rules()}
 
 Hãy viết bản chiêm nghiệm theo ngày {body.targetDate.isoformat()} bằng {_language_name(body.language)}.
+Toàn bộ nội dung, bao gồm tiêu đề, nhãn và lời khuyên, phải chỉ dùng {_language_name(body.language)}; tuyệt đối không xen tiếng Việt nếu ngôn ngữ đích là English hoặc Japanese.
 
 DỮ LIỆU TRANSIT ĐÃ TÍNH:
 {json.dumps(transits, ensure_ascii=False, indent=2)}
@@ -1676,6 +1678,7 @@ def journal_analyze(body: JournalAnalysisRequest):
     prompt = f"""{_ai_system_rules()}
 
 Phân tích nhật ký cá nhân bằng {_language_name(body.language)}. Chỉ sử dụng nội dung người dùng đã ghi, không đưa nội dung riêng tư vào ví dụ công khai.
+Viết toàn bộ tiêu đề, các phần, câu phân tích và kết luận bằng {_language_name(body.language)}; không xen tiếng Việt khi ngôn ngữ đích là English hoặc Japanese. Giữ nguyên ngôn ngữ của nhật ký chỉ khi trích dẫn ngắn; ngay sau đó giải thích bằng ngôn ngữ đích.
 
 NHẬT KÝ:
 {journal_text}
